@@ -20,6 +20,20 @@ export default class SetModel {
   static createInstance(object) {
     return new SetModel(object.id, object.nbr, object.weight, object.done);
   }
+
+  update(nbrRep = null, weight = null, done = null) {
+    if (nbrRep) {
+      this.nbrRep = nbrRep? nbrRep : 1;
+    }
+    if (weight) {
+      this.weight = weight? weight : 0;
+    }
+    if (done) {
+      this.done = done? done : false;
+    }
+    return this;
+  }
+  log = () => console.log(this.id, this.nbrRep, this.weight, this.done);
 }
 /*
 SetModel {

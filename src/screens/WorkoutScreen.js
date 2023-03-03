@@ -7,17 +7,15 @@ import {
   HeaderButtons,
 } from "react-navigation-header-buttons";
 import WorkoutModel from "../models/WorkoutModel";
-import SetCard from "../component/SetCard";
-import SetModel from "../models/SetModel";
+import ExerciseCard from "../component/ExerciseCard";
 
 export default WorkoutScreen = (props) => {
-  const [setInstance, setSetInstance] = useState(SetModel.getRandom());
+  
   const [workout, setWorkout] = useState(new WorkoutModel(null, new Date()));
   workout.log();
-  console.log('WorkoutScreen');
   return (
     <View style={Styles.container}>
-     <SetCard setInstance={setInstance} setSetInstance={setSetInstance}/>
+     <ExerciseCard />
     </View>
   );
 };
