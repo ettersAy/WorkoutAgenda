@@ -4,6 +4,8 @@ import { Card, Button, Title, Paragraph } from "react-native-paper";
 import SetModel from "../models/SetModel";
 
 export default SetCard = ({setInstance, setSetInstance}) => {
+    
+  console.log('SetCard');
   return (
     <Card style={Styles.container}>
       <Card.Content>

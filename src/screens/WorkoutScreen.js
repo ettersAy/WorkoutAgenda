@@ -14,6 +14,7 @@ export default WorkoutScreen = (props) => {
   const [setInstance, setSetInstance] = useState(SetModel.getRandom());
   const [workout, setWorkout] = useState(new WorkoutModel(null, new Date()));
   workout.log();
+  console.log('WorkoutScreen');
   return (
     <View style={Styles.container}>
      <SetCard setInstance={setInstance} setSetInstance={setSetInstance}/>
