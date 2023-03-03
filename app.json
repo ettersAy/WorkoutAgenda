@@ -31,6 +31,12 @@
         "projectId": "12ac8b90-5747-49b5-88ca-c93dbbffcdcb"
       }
     },
-    "owner": "ayoube"
+    "owner": "ayoube",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/12ac8b90-5747-49b5-88ca-c93dbbffcdcb"
+    }
   }
 }
