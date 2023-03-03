@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "12ac8b90-5747-49b5-88ca-c93dbbffcdcb"
+      }
+    },
+    "owner": "ayoube"
   }
 }
