@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { Text, TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
 
 
@@ -22,7 +22,7 @@ export default SetCard = ({ setItem, updateSet , deleteSet }) => {
         onSubmitEditing={applyModif}
         keyboardType="numeric"
       />
-      <Text>Reps with </Text>
+      <Text style={styles.label}>Rep </Text>
       <TextInput
         value={weight.toString()}
         maxLength={3}
@@ -31,35 +31,47 @@ export default SetCard = ({ setItem, updateSet , deleteSet }) => {
         onSubmitEditing={applyModif}
         keyboardType="numeric"
       />
-      <Text>kg</Text>
+      <Text style={styles.label}>kg</Text>
       <TouchableOpacity onPress={() => deleteSet(setItem.id)}>
-        <AntDesign name="delete" size={24} color="black" style={styles.icon} />
+        <Ionicons name="trash" size={24} color="black" style={styles.icon} />
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+    // add a shadow to the container
     container:{
         flexDirection: 'row',
         marginLeft:10,
         marginTop:10,
-        padding:5,
+        padding: 10,
+        backgroundColor: '#40414f',
         borderColor: 'black',
         borderWidth: 1,
         borderRadius: 10,
+        elevation: 10,
+
       },
       inputText: {
-        borderBottomColor: 'black',
+        borderBottomColor: 'white',
         borderBottomWidth: 1,
         marginTop: -5,
         marginLeft: 5,
         marginRight: 5,
-        paddingLeft: 5,
+        //paddingLeft: 5,
+        fontSize: 23,
+        color: 'white',
+      },
+      label: {
+        marginRight: 5,
+        fontSize: 20,
+        marginRight: 20,
+        color: 'white',
       },
       icon: {
         margin: 0,
         padding: 0,
-        marginLeft: 20,
+        color: 'white',
       },
 });

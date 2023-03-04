@@ -9,8 +9,8 @@ import SettingScreen from "./src/screens/SettingScreen";
 
 const AppNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
     Workout: WorkoutScreen,
+    Home: HomeScreen,
     User: UserScreen,
     Setting: SettingScreen,
   },

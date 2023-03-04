@@ -8,14 +8,28 @@ import {
 } from "react-navigation-header-buttons";
 import WorkoutModel from "../models/WorkoutModel";
 import ExerciseCard from "../component/ExerciseCard";
+import ExerciseModel from "../models/ExerciseModel";
+import SetEditor from "../component/SetEditor";
+import SetModel from "../models/SetModel";
 
 export default WorkoutScreen = (props) => {
-  
   const [workout, setWorkout] = useState(new WorkoutModel(null, new Date()));
   workout.log();
+  const updateExercise = (updatedExercise) => {
+    console.log("updateSet : " + updatedExercise.getSummary());
+  };
+
+  const deleteExercise = (idExerciseToDelete) => {
+    console.log("Set to delete : " + idExerciseToDelete);
+  };
   return (
     <View style={Styles.container}>
-     <ExerciseCard />
+      <ExerciseCard
+        exercise={ExerciseModel.getRandom()}
+        updateExercise={updateExercise}
+        deleteExercise={deleteExercise}
+      />
+      <SetEditor setItem={new SetModel(null, 10, 10)} />
     </View>
   );
 };
@@ -29,22 +43,29 @@ const HeaderButtonComponent = (props) => (
   />
 );
 
-Home.navigationOptions = (navData) => {
+WorkoutScreen.navigationOptions = (navData) => {
   return {
     headerTitle: "Workout",
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButtonComponent}>
         <Item
           title="Calendar"
-          iconName="md-calendar"
+          iconName="save"
           onPress={() => {
-            console.log("Go To workout Screen");
-            navData.navigation.navigate("Workout");
+            console.log("Save Workout");
+          }}
+        />
+        <Item
+          title="Calendar"
+          iconName="home"
+          onPress={() => {
+            console.log("Go To Home Screen");
+            navData.navigation.navigate("Home");
           }}
         />
         <Item
           title="Setting"
-          iconName="ios-settings-outline"
+          iconName="settings-outline"
           onPress={() => navData.navigation.navigate("Setting")}
         />
       </HeaderButtons>

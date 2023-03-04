@@ -8,7 +8,7 @@ export const MUSCLE_GROUPS = [
 ];
 export const MUSCLE = [
   'Quadriceps',
-  'Glutes',
+  'Gluts',
   'Hamstrings',
   'Lower_back',
   'Chest',
@@ -38,7 +38,7 @@ export const MUSCLE = [
  */
 export const GROUPED_MUSCLE = [
   ['Triceps', 'Biceps', 'Forearms'],
-  ['Quadriceps', 'Glutes', 'Hamstrings', 'Calves'],
+  ['Quadriceps', 'Gluts', 'Hamstrings', 'Calves'],
   ['Chest','Shoulders','Back'],
 ];
 
@@ -58,7 +58,7 @@ export const redImages = {
   Upper_back: require('../assets/red/Upper_back_red.png'),
   Lower_back: require('../assets/red/Lower_back_red.png'),
 
-  Glutes: require('../assets/red/Glutes_red.png'),
+  Gluts: require('../assets/red/Gluts_red.png'),
   Calves: require('../assets/red/Calves_red.png'),
   Quadriceps: require('../assets/red/Quadriceps_red.png'),
   Hamstrings: require('../assets/red/Hamstrings_red.png'),
@@ -67,7 +67,7 @@ export const redImages = {
 };
 export const greenImages = {
   Quadriceps: require('../assets/green/Quadriceps_green.png'),
-  Glutes: require('../assets/green/Glutes_green.png'),
+  Gluts: require('../assets/green/Gluts_green.png'),
   Hamstrings: require('../assets/green/Hamstrings_green.png'),
   Lower_back: require('../assets/green/Lower_back_green.png'),
   Chest: require('../assets/green/Chest_green.png'),
@@ -394,7 +394,7 @@ export const EXERCISES_PER_MUSCLE_ALL = {
     'Calf Stretch',
     'Calf Roll',
   ],
-  Glutes: [
+  Gluts: [
     'Barbell Hip Thrust',
     'Dumbbell Hip Thrust',
     'Glute Bridge',

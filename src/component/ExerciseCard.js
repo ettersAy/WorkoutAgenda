@@ -1,38 +1,105 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Card, Button, Title, Paragraph } from "react-native-paper";
-import SetModel from "../models/SetModel";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import SetCard from "./SetCard";
+import SetModel from "../models/SetModel";
 
 export default ExerciseCard = ({
-    exercise,
-    deleteExercise,
-    updateExercise,
-  }) => {
-  const [setItem, setSetItem] = useState(SetModel.getRandom());
+  exercise,
+  updateExercise,
+  deleteExercise,
+}) => {
+  const [setList, setSetList] = useState(exercise.setList);
 
-  const updateSet = (setUpdated) => {
-    console.log("updateSet : " + setUpdated.getSummary());
+  const updateList = (updatedList) => {
+    setSetList([...updatedList]);
+    exercise.setList = updatedList;
+    updateExercise(exercise);
   };
 
-  const deleteSet = (setIdToDelete) => {
-    console.log("Set to delete : " + setIdToDelete);
+  const addNewSet = () => {
+    updateList([...setList, SetModel.getRandom()]);
+  };
+
+  const updateSet = (setUpdated) => {
+    if (setList.length) {
+      updateList(
+        setList.map((setItem) => {
+          return setItem.id === setUpdated.id ? setUpdated : setItem;
+        })
+      );
+    }
+  };
+
+  const deleteSet = (setId) => {
+    console.log({ deleteSet: setId });
+    if (setList.length > 1) {
+      updateList(setList.filter((setItem) => setItem.id !== setId));
+    }
   };
 
   return (
-    <SetCard setItem={setItem} updateSet={updateSet} deleteSet={deleteSet} />
+    <View style={styles.container}>
+      <View style={styles.body}>
+        <Image
+          source={require("../../assets/exercise/Squat.png")}
+          style={{ width: 100, height: 140, borderRadius: 5 }}
+        />
+        <View >
+            <Text style={styles.title}>{exercise.name}</Text>
+          {setList.length && (
+            <ScrollView>
+              {setList.map((setItem, index) => (
+                <SetCard
+                  key={setItem.id}
+                  setItem={setItem}
+                  updateSet={updateSet}
+                  deleteSet={deleteSet}
+                />
+              ))}
+            </ScrollView>
+          )}
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <TouchableOpacity onPress={addNewSet}>
+          <Ionicons name="add-circle-sharp" size={24} color="black" style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => deleteExercise(exercise.id)}>
+          <Ionicons name="trash" size={24} color="black" style={styles.icon} />
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    marginLeft: 10,
-    marginTop: 10,
-    padding: 5,
-    borderColor: "black",
+    borderRadius: 5,
     borderWidth: 1,
-    borderRadius: 10,
+    borderColor: "#ddd",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 2,
+    backgroundColor: "#fff",
+    marginBottom: 10,
+    padding: 10,
+  },
+  body: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  footer: {
+    flexDirection: "row", justifyContent: "flex-end"
   },
   inputText: {
     borderBottomColor: "black",
@@ -47,4 +114,9 @@ const Styles = StyleSheet.create({
     padding: 0,
     marginLeft: 20,
   },
+  title: {
+    fontSize: 20,
+    marginLeft: 10,
+    color: "black",
+  }
 });
