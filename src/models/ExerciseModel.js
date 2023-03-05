@@ -8,6 +8,7 @@ export default class ExerciseModel {
     this.id = id ? id : randomId();
     this.name = name;
     this.done = done;
+    this.imageSource = require('../../assets/img.png');
     this.setSetList(setList);
   }
 

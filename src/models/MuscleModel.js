@@ -1,5 +1,5 @@
 import ExerciseModel from './ExerciseModel';
-import { MUSCLE_GROUPS, EXERCISES_PER_MUSCLE_ALL } from '../data';
+import { MUSCLE_GROUPS, EXERCISES_PER_MUSCLE_ALL, redImages, greenImages } from '../data';
 import { randomId, randomElement } from '../Lib';
 
 export default class MuscleModel {
@@ -7,9 +7,10 @@ export default class MuscleModel {
     this.id = id ? id : randomId();
     this.name = name;
     this.done = done; 
+    this.imageSource = done ? greenImages[this.name] : redImages[this.name];
     this.setExerciseList(exerciseList);
   }
-
+   
   static createInstance(object) {
     return new MuscleModel(object.id, object.name, object.exerciseList, object.done);
   }
@@ -51,7 +52,8 @@ export default class MuscleModel {
   }
   
   getSummary() {
-    return this.exerciseList.map((exercise, index) => `${index+1}- ${exercise.name} : ${exercise.getShortSummary()} `).join( "\n"); 
+    return this.exerciseList.map((exercise, index) => 
+    `${index+1}- ${exercise.name} : ${exercise.getShortSummary()} `).join( "\n"); 
   }
 
   isDone() {
@@ -75,10 +77,10 @@ export default class MuscleModel {
     return this.exerciseList.map((exercise) => exercise.name);
   }
   log() {
-    let strSummary = this.exerciseList
-      .map((key) => this.exerciseList[key].getSummary())
-      .join(', ');
-    console.log(`${this.getSummary()} : ${strSummary}`);
+    /*let strSummary = this.exerciseList
+      .map((exercise) => exercise.getSummary())
+      .join(', ');*/
+    console.log(`${this.getSummary()} `);
   }
   
 }

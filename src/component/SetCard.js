@@ -22,7 +22,7 @@ export default SetCard = ({ setItem, updateSet , deleteSet }) => {
         onSubmitEditing={applyModif}
         keyboardType="numeric"
       />
-      <Text style={styles.label}>Rep </Text>
+      <Text style={styles.label}>Rep</Text>
       <TextInput
         value={weight.toString()}
         maxLength={3}
@@ -33,7 +33,7 @@ export default SetCard = ({ setItem, updateSet , deleteSet }) => {
       />
       <Text style={styles.label}>kg</Text>
       <TouchableOpacity onPress={() => deleteSet(setItem.id)}>
-        <Ionicons name="trash" size={24} color="black" style={styles.icon} />
+        <Ionicons name="trash" size={18} color="black" style={styles.icon} />
       </TouchableOpacity>
     </View>
   );
@@ -51,22 +51,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         elevation: 10,
-
       },
       inputText: {
         borderBottomColor: 'white',
         borderBottomWidth: 1,
         marginTop: -5,
-        marginLeft: 5,
+        marginLeft: 3,
         marginRight: 5,
         //paddingLeft: 5,
-        fontSize: 23,
+        fontSize: 12,
         color: 'white',
       },
       label: {
-        marginRight: 5,
-        fontSize: 20,
-        marginRight: 20,
+        fontSize: 13,
+        marginRight: 10,
         color: 'white',
       },
       icon: {

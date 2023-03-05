@@ -11,25 +11,33 @@ import ExerciseCard from "../component/ExerciseCard";
 import ExerciseModel from "../models/ExerciseModel";
 import SetEditor from "../component/SetEditor";
 import SetModel from "../models/SetModel";
+import ExerciseEditor from "../component/ExerciseEditor";
+import MuscleCard from "../component/MuscleCard";
+import MuscleModel from "../models/MuscleModel";
 
 export default WorkoutScreen = (props) => {
   const [workout, setWorkout] = useState(new WorkoutModel(null, new Date()));
   workout.log();
-  const updateExercise = (updatedExercise) => {
-    console.log("updateSet : " + updatedExercise.getSummary());
+  const updateMuscle = (updatedMuscle) => {
+    console.log("updateMuscle : " + updatedMuscle.getSummary());
   };
 
-  const deleteExercise = (idExerciseToDelete) => {
-    console.log("Set to delete : " + idExerciseToDelete);
+  const deleteMuscle = (idMuscleToDelete) => {
+    console.log("Muscle to delete : " + idMuscleToDelete);
   };
+
+  const onSave = (updatedExercise) => {
+    console.log("onSave : " + updatedExercise.getSummary());
+  }
+
   return (
     <View style={Styles.container}>
-      <ExerciseCard
-        exercise={ExerciseModel.getRandom()}
-        updateExercise={updateExercise}
-        deleteExercise={deleteExercise}
+      <MuscleCard
+        muscle={MuscleModel.getRandom()}
+        updateMuscle={updateMuscle}
+        deleteMuscle={deleteMuscle}
       />
-      <SetEditor setItem={new SetModel(null, 10, 10)} />
+      
     </View>
   );
 };

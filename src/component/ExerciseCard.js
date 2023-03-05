@@ -50,10 +50,10 @@ export default ExerciseCard = ({
       <View style={styles.body}>
         <Image
           source={require("../../assets/exercise/Squat.png")}
-          style={{ width: 100, height: 140, borderRadius: 5 }}
+          style={styles.image}
         />
-        <View >
-            <Text style={styles.title}>{exercise.name}</Text>
+        <View>
+          <Text style={styles.title}>{exercise.name}</Text>
           {setList.length && (
             <ScrollView>
               {setList.map((setItem, index) => (
@@ -66,15 +66,25 @@ export default ExerciseCard = ({
               ))}
             </ScrollView>
           )}
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={addNewSet}>
+              <Ionicons
+                name="add-circle-sharp"
+                size={24}
+                color="black"
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => deleteExercise(exercise.id)}>
+              <Ionicons
+                name="trash"
+                size={24}
+                color="black"
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.footer}>
-        <TouchableOpacity onPress={addNewSet}>
-          <Ionicons name="add-circle-sharp" size={24} color="black" style={styles.icon} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => deleteExercise(exercise.id)}>
-          <Ionicons name="trash" size={24} color="black" style={styles.icon} />
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -85,21 +95,26 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#ddd",
-    shadowColor: "#000",
+    shadowColor: "red",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 2,
+    elevation: 5,
     backgroundColor: "#fff",
-    marginBottom: 10,
     padding: 10,
+    marginBottom: 10,
   },
   body: {
     flexDirection: "row",
-    justifyContent: "space-between",
+  },
+  image: {
+    width: 60, // width of your image in pixels
+    height: 90, // height of your image in pixels
+    borderRadius: 5,
   },
   footer: {
-    flexDirection: "row", justifyContent: "flex-end"
+    flexDirection: "row",
+    justifyContent: "flex-end",
   },
   inputText: {
     borderBottomColor: "black",
@@ -115,8 +130,8 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   title: {
-    fontSize: 20,
+    fontSize: 15,
     marginLeft: 10,
     color: "black",
-  }
+  },
 });
