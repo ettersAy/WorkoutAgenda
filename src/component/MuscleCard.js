@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, View,Modal, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Modal,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import ExerciseModel from "../models/ExerciseModel";
 import ExerciseCard from "./ExerciseCard";
@@ -12,6 +19,7 @@ export default MuscleCard = ({ muscle, updateMuscle, deleteMuscle }) => {
   const [exerciseList, setExerciseList] = useState(muscle.exerciseList);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [displayList, setDisplayList] = useState(false);
 
   const updateList = (newList) => {
     setIsLoading(true);
@@ -48,7 +56,6 @@ export default MuscleCard = ({ muscle, updateMuscle, deleteMuscle }) => {
 
   const getNotExistingExercise = () => {
     const existingExercises = exerciseList.map((exercise) => exercise.name);
-    console.log({ MuscleName: muscle.name });
     return EXERCISES_PER_MUSCLE_ALL[muscle.name].filter(
       (exerciseName) => !existingExercises.includes(exerciseName)
     );
@@ -59,14 +66,28 @@ export default MuscleCard = ({ muscle, updateMuscle, deleteMuscle }) => {
       <View style={styles.header}>
         <Image source={muscle.imageSource} style={styles.image} />
         <Text style={styles.title}>{muscle.name}</Text>
-        <TouchableOpacity style={styles.addButton} onPress={() => setModalVisibility(true)}>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => setDisplayList(!displayList)}
+        >
+          <MaterialIcons name={displayList? "unfold-less" : "unfold-more"} size={20} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => setModalVisibility(true)}
+        >
           <MaterialIcons name="add-circle-outline" size={20} />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => deleteMuscle(muscle.id)}
+        >
+          <MaterialIcons name="delete-outline" size={20} />
+        </TouchableOpacity>
+        
       </View>
       <View style={styles.listContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" />
-        ) : (
+        {displayList ? (
           exerciseList.map((exercise, index) => (
             <ExerciseCard
               key={exercise.id}
@@ -75,7 +96,9 @@ export default MuscleCard = ({ muscle, updateMuscle, deleteMuscle }) => {
               deleteExercise={deleteExercise}
             />
           ))
-        )}
+        ) : (
+          <Text style={styles.noExerciseText}> {muscle.getSummary()} </Text>
+        ) }
       </View>
       <Modal animationType="slide" transparent={true} visible={modalVisibility}>
         <SelectModal
@@ -123,5 +146,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     width: 20,
     height: 20,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
   },
 });

@@ -70,7 +70,7 @@ export default ExerciseCard = ({
             <TouchableOpacity onPress={addNewSet}>
               <Ionicons
                 name="add-circle-sharp"
-                size={24}
+                size={20}
                 color="black"
                 style={styles.icon}
               />
@@ -78,7 +78,7 @@ export default ExerciseCard = ({
             <TouchableOpacity onPress={() => deleteExercise(exercise.id)}>
               <Ionicons
                 name="trash"
-                size={24}
+                size={20}
                 color="black"
                 style={styles.icon}
               />
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
     justifyContent: "flex-end",
+    marginTop: 5,
   },
   inputText: {
     borderBottomColor: "black",
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   icon: {
     margin: 0,
     padding: 0,
-    marginLeft: 20,
+    marginLeft: 7,
   },
   title: {
     fontSize: 15,

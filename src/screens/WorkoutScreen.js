@@ -7,11 +7,6 @@ import {
   HeaderButtons,
 } from "react-navigation-header-buttons";
 import WorkoutModel from "../models/WorkoutModel";
-import ExerciseCard from "../component/ExerciseCard";
-import ExerciseModel from "../models/ExerciseModel";
-import SetEditor from "../component/SetEditor";
-import SetModel from "../models/SetModel";
-import ExerciseEditor from "../component/ExerciseEditor";
 import MuscleCard from "../component/MuscleCard";
 import MuscleModel from "../models/MuscleModel";
 
